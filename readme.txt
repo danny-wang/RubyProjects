@@ -1,2 +1,6 @@
 I THIBK IT;S A GOOD WAY.
-create the a new branch
+<<<<<<< HEAD
+create a the  new branch 123
+=======
+create a the  new branch 123
+>>>>>>> dev
