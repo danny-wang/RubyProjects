@@ -26,6 +26,9 @@ class Box
    def self.printCount()
 	puts "Box count is: #@@count"
    end
+   def to_s
+       "(w:#@width,h:#@height)"
+   end
 end
 
 # create an object
@@ -44,4 +47,5 @@ puts "Width of the box is : #{x}"
 puts "Height of the box is : #{y}"
 
 Box.printCount()
-
+puts "String representaion of box is: #{box}"
+puts "String representaion of box is: #{box2}"
