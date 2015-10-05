@@ -1,3 +1,4 @@
+#ruby version: 2.2.1
 require 'matrix'
 
 class Matrix       #an easy way to change the content of Matrix
