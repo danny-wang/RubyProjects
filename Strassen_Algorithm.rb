@@ -14,7 +14,19 @@ end
 # 	arr
 	
 # end
+def grade_schol_matrix_multi n, matx_a, matx_b  #return value is the multiplication result
+	result=Matrix.zero n 
+	for i in 0..n-1
+		for j in 0..n-1
+			for k in 0..n-1
+				result[i,j]=result[i,j]+matx_a[i,k]*matx_b[k,j]
+			end
+		end
+	end
+	return result
 
+
+end
 # p generate_array 4
 
 
@@ -151,5 +163,7 @@ input $global_n,mat2
 result=Strassen $global_n ,mat1,mat2 ,result
 output $global_n,result
 
-puts "Grade-school result:"
+puts "invoke ruby inside Matrix multiplication result:"
 puts mat1*mat2
+puts "Grade-school result:"
+puts grade_schol_matrix_multi $global_n ,mat1,mat2
