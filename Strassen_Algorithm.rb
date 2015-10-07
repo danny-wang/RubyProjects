@@ -1,6 +1,6 @@
 #ruby version: 2.2.1
 require 'matrix'
-
+require 'benchmark'
 class Matrix       #an easy way to change the content of Matrix
   def []=(i,j,x)
     @rows[i][j]=x
@@ -37,14 +37,16 @@ end
 
 # a=gets.chomp()
 
-$global_n=2 #Define the size of the Matrix
+$global_n=512 #Define the size of the Matrix
 $count_iteration=0  #Describe the number of invoking method  Strassen
 
 def input n, matx    #input a matrix, the second parameter is an object of class Matrix
+	puts "Generate #{n}-Matrix random"
 	for i in 0..n-1 do
-		puts "Please input line  #{i+1}"
+		# puts "Please input line  #{i+1}"
 		for j in 0..n-1 do
-		matx[i,j]=gets.chomp.to_f
+		# matx[i,j]=gets.chomp.to_f
+		matx[i,j]=rand(100)
 		end
 	end
 	puts "your have finish the input of Matrix" 
@@ -62,7 +64,7 @@ end
 
 def Strassen n,matx_a,matx_b,matx_c
 	$count_iteration=$count_iteration+1
-    puts "Invoking Strassen  time: #{$count_iteration}"
+    # puts "Invoking Strassen  time: #{$count_iteration}"
 	a11=Matrix.zero n/2
 	a12=Matrix.zero n/2
 	a21=Matrix.zero n/2
@@ -96,12 +98,12 @@ def Strassen n,matx_a,matx_b,matx_c
 				a12[i,j]=matx_a[i,j+n/2]
 				a21[i,j]=matx_a[i+n/2,j]
 				a22[i,j]=matx_a[i+n/2,j+n/2]
-				puts "----------get four sub_metrix-----------"
+				# puts "----------get four sub_metrix-----------"
 				b11[i,j]=matx_b[i,j]
 				b12[i,j]=matx_b[i,j+n/2]
 				b21[i,j]=matx_b[i+n/2,j]
 				b22[i,j]=matx_b[i+n/2,j+n/2]
-				puts "----------get four sub_metrix-----------"
+				# puts "----------get four sub_metrix-----------"
 			end
 
 		end
@@ -161,10 +163,14 @@ puts "----please input the first Matrix----"
 input $global_n,mat1
 puts "----please input the second Matrix----"
 input $global_n,mat2
-result=Strassen $global_n ,mat1,mat2 ,result
-output $global_n,result
+puts "benchmark.realtime:"
+puts Benchmark.realtime {
+ result=Strassen $global_n ,mat1,mat2 ,result
+# grade_schol_matrix_multi $global_n ,mat1,mat2
+}
+# output $global_n,result
 
-puts "invoke ruby inside Matrix multiplication result:"
-puts mat1*mat2
-puts "Grade-school result:"
-puts grade_schol_matrix_multi $global_n ,mat1,mat2
+# puts "invoke ruby inside Matrix multiplication result:"
+# puts mat1*mat2
+# puts "Grade-school result:"
+# puts grade_schol_matrix_multi $global_n ,mat1,mat2
